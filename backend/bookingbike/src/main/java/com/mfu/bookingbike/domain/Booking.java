@@ -46,11 +46,11 @@ public class Booking {
 		this(null,day, month, year);
 	}
 
-	public Long getId() {
+	public Long getBookingId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setBookingId(Long id) {
 		this.id = id;
 	}
 	

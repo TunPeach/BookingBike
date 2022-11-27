@@ -60,7 +60,7 @@ public class ShopController {
 	  
 	  if(oldShopData.isPresent()) {
 		  Shop updatedShopData = oldShopData.get();
-		  updatedShopData.setName(newShopData.getName());
+		  updatedShopData.setShopName(newShopData.getShopName());
 		  
 		  Shop shopObj = shopRepo.save(updatedShopData);
 		  return new ResponseEntity<>(shopObj, HttpStatus.OK);

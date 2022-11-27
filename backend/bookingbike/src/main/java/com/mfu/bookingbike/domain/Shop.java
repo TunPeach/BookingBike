@@ -33,23 +33,23 @@ public class Shop {
 		this(null,name);
 	}
 
-	public Long getId() {
+	public Long getShopId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setShopId(Long id) {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getShopName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setShopName(String name) {
 		this.name = name;
 	}
 	
-	 public Set<Bike> getBikes() {
+	public Set<Bike> getBikes() {
 	    return this.bikes;
 	}
 }

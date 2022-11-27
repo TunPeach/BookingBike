@@ -76,23 +76,6 @@ public class BookingController {
 	  }
 	  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
-
-  
-  /*@PutMapping("/booking/{bookingId}/bikes/{bikeId}")
-  Booking addBookingToBike(@PathVariable Long bookingId, @PathVariable Long bikeId) {
-	  Booking booking = bookingRepo.findById(bookingId).get();
-      Bike bike = bikeRepo.findById(bikeId).get();
-      booking.bookBikes(bike);
-      return bookingRepo.save(booking);
-  }*/
-  
-  @PutMapping("/booking/{bookingId}/user/{userId}")
-  Booking addUserToBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
-      Booking booking = bookingRepo.findById(bookingId).get();
-      User user = userRepo.findById(userId).get();
-      booking.setUser(user);
-      return bookingRepo.save(booking);
-  }
   
   @DeleteMapping("/booking/{id}")
   public ResponseEntity<HttpStatus> deleteBookingById(@PathVariable Long id) {

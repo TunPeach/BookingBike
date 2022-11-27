@@ -43,19 +43,19 @@ public class Bike {
 		this(null,name,desc);
 	}
 
-	public Long getId() {
+	public Long getBikeId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setBikeId(Long id) {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getBikeName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setBikeName(String name) {
 		this.name = name;
 	}
 

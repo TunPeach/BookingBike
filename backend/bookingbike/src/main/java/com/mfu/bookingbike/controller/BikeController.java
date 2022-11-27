@@ -68,29 +68,13 @@ public class BikeController {
 	  
 	  if(oldBikeData.isPresent()) {
 		  Bike updatedBikeData = oldBikeData.get();
-		  updatedBikeData.setName(newBikeData.getName());
+		  updatedBikeData.setBikeName(newBikeData.getBikeName());
 		  updatedBikeData.setDesc(newBikeData.getDesc());
 		  
 		  Bike bikeObj = bikeRepo.save(updatedBikeData);
 		  return new ResponseEntity<>(bikeObj, HttpStatus.OK);
 	  }
 	  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-  }
-  
-  @PutMapping("/bikes/{bikeId}/booking/{bookingId}")
-  Bike addBikeToBooking(@PathVariable Long bikeId, @PathVariable Long bookingId) {
-	  Bike bike = bikeRepo.findById(bikeId).get();
-      Booking booking = bookingRepo.findById(bookingId).get();
-      bike.bookingBike(booking);
-      return bikeRepo.save(bike);
-  }
-  
-  @PutMapping("/bikes/{bikeId}/shop/{shopId}")
-  Bike addShopToBike(@PathVariable Long bikeId, @PathVariable Long shopId) {
-      Bike bike = bikeRepo.findById(bikeId).get();
-      Shop shop = shopRepo.findById(shopId).get();
-      bike.setShop(shop);
-      return bikeRepo.save(bike);
   }
   
   @DeleteMapping("/bikes/{id}")
