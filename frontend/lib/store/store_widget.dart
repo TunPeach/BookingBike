@@ -1,3 +1,4 @@
+import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -12,6 +13,8 @@ class StoreWidget extends StatefulWidget {
 }
 
 class _StoreWidgetState extends State<StoreWidget> {
+  ApiCallResponse? apiResultelv;
+  ApiCallResponse? apiResultflp;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -136,12 +139,35 @@ class _StoreWidgetState extends State<StoreWidget> {
                   ),
                   child: Align(
                     alignment: AlignmentDirectional(0, 0),
-                    child: Text(
-                      '{Name Store}',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 30,
-                          ),
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetDetileBikeCall.call(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                            ),
+                          );
+                        }
+                        final textGetDetileBikeResponse = snapshot.data!;
+                        return Text(
+                          getJsonField(
+                            textGetDetileBikeResponse.jsonBody,
+                            r'''$[0].shopName''',
+                          ).toString(),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 30,
+                                  ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -165,12 +191,42 @@ class _StoreWidgetState extends State<StoreWidget> {
                   ),
                   child: Align(
                     alignment: AlignmentDirectional(0, 0),
-                    child: Text(
-                      '{Name Store}',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 30,
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetDetileBikeCall.call(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                            ),
+                          );
+                        }
+                        final textGetDetileBikeResponse = snapshot.data!;
+                        return InkWell(
+                          onTap: () async {
+                            apiResultelv = await GetshopCall.call();
+
+                            setState(() {});
+                          },
+                          child: Text(
+                            getJsonField(
+                              textGetDetileBikeResponse.jsonBody,
+                              r'''$[1].shopName''',
+                            ).toString(),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 30,
+                                    ),
                           ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -194,12 +250,42 @@ class _StoreWidgetState extends State<StoreWidget> {
                   ),
                   child: Align(
                     alignment: AlignmentDirectional(0, 0),
-                    child: Text(
-                      '{Name Store}',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 30,
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetshopCall.call(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                            ),
+                          );
+                        }
+                        final textGetshopResponse = snapshot.data!;
+                        return InkWell(
+                          onTap: () async {
+                            apiResultflp = await GetshopCall.call();
+
+                            setState(() {});
+                          },
+                          child: Text(
+                            getJsonField(
+                              textGetshopResponse.jsonBody,
+                              r'''$[2].shopName''',
+                            ).toString(),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 30,
+                                    ),
                           ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -223,12 +309,35 @@ class _StoreWidgetState extends State<StoreWidget> {
                   ),
                   child: Align(
                     alignment: AlignmentDirectional(0, 0),
-                    child: Text(
-                      '{Name Store}',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 30,
-                          ),
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetshopCall.call(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                            ),
+                          );
+                        }
+                        final textGetshopResponse = snapshot.data!;
+                        return Text(
+                          getJsonField(
+                            textGetshopResponse.jsonBody,
+                            r'''$[3].shopName''',
+                          ).toString(),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 30,
+                                  ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -252,12 +361,35 @@ class _StoreWidgetState extends State<StoreWidget> {
                   ),
                   child: Align(
                     alignment: AlignmentDirectional(0, 0),
-                    child: Text(
-                      '{Name Store}',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 30,
-                          ),
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetshopCall.call(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                            ),
+                          );
+                        }
+                        final textGetshopResponse = snapshot.data!;
+                        return Text(
+                          getJsonField(
+                            textGetshopResponse.jsonBody,
+                            r'''$[4].shopName''',
+                          ).toString(),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 30,
+                                  ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -281,12 +413,35 @@ class _StoreWidgetState extends State<StoreWidget> {
                   ),
                   child: Align(
                     alignment: AlignmentDirectional(0, 0),
-                    child: Text(
-                      '{Name Store}',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 30,
-                          ),
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetshopCall.call(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                            ),
+                          );
+                        }
+                        final textGetshopResponse = snapshot.data!;
+                        return Text(
+                          getJsonField(
+                            textGetshopResponse.jsonBody,
+                            r'''$[5].shopName''',
+                          ).toString(),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 30,
+                                  ),
+                        );
+                      },
                     ),
                   ),
                 ),

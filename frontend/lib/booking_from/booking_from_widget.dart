@@ -1,3 +1,4 @@
+import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -173,29 +174,77 @@ class _BookingFromWidgetState extends State<BookingFromWidget> {
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 240, 0),
-                                      child: Text(
-                                        'Tiger Street Pro Cycles',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 20,
-                                            ),
+                                      child: FutureBuilder<ApiCallResponse>(
+                                        future: GetbookingCall.call(),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          final textGetbookingResponse =
+                                              snapshot.data!;
+                                          return Text(
+                                            GetbookingCall.bikename(
+                                              textGetbookingResponse.jsonBody,
+                                            ).toString(),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 20,
+                                                ),
+                                          );
+                                        },
                                       ),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           30, 20, 30, 0),
-                                      child: Text(
-                                        'Handlebar with bar, aggressive style\nAdjust your posture, change your posture, rest your hands, spin comfortably.\n\nLight aluminium, comes with foam, soft and comfortable to wear\nSize 25.4 : Width 560 mm.\nSize 31.8 : Width 560 mm.',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFA3A3A3),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                      child: FutureBuilder<ApiCallResponse>(
+                                        future: GetbookingCall.call(),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          final textGetbookingResponse =
+                                              snapshot.data!;
+                                          return Text(
+                                            GetbookingCall.desc(
+                                              textGetbookingResponse.jsonBody,
+                                            ).toString(),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: Color(0xFFA3A3A3),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          );
+                                        },
                                       ),
                                     ),
                                   ],

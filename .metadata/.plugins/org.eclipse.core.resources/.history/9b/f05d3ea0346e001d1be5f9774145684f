@@ -1,0 +1,4 @@
+FROM openjdk:11
+LABEL maintainer="javaguides.net"
+ADD target/bookingbike-0.0.1-SNAPSHOT.jar bookingbike-0.0.1-SNAPSHOT.jar.original
+ENTRYPOINT ["java", "-jar", "bookingbike-0.0.1-SNAPSHOT.jar.original"]

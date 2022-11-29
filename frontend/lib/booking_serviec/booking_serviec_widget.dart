@@ -1,3 +1,4 @@
+import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -139,287 +140,404 @@ class _BookingServiecWidgetState extends State<BookingServiecWidget> {
                         ),
                   ),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
+                ListView(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
-                          width: 286,
-                          height: 475,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 19,
-                                color: Color(0x33000000),
-                                offset: Offset(0, 13),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(22),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                                child: Text(
-                                  'Free',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFF62D33A),
-                                        fontSize: 40,
-                                      ),
-                                ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: 286,
+                              height: 475,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 19,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0, 13),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(22),
                               ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Text(
-                                  'Tiger Street Pro Cycles',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 20,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    30, 20, 30, 0),
-                                child: Text(
-                                  'Handlebar with bar, aggressive style\nAdjust your posture, change your posture, rest your hands, spin comfortably.\n\nLight aluminium, comes with foam, soft and comfortable to wear\nSize 25.4 : Width 560 mm.\nSize 31.8 : Width 560 mm.',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFFA3A3A3),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    context.pushNamed('BookingFrom');
-                                  },
-                                  text: 'BOOK NOW',
-                                  options: FFButtonOptions(
-                                    width: 153,
-                                    height: 41,
-                                    color: Color(0xFFFFB977),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Ubuntu',
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 100, 0, 0),
+                                    child: FutureBuilder<ApiCallResponse>(
+                                      future: GetDetileBikeCall.call(),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final textGetDetileBikeResponse =
+                                            snapshot.data!;
+                                        return Text(
+                                          getJsonField(
+                                            textGetDetileBikeResponse.jsonBody,
+                                            r'''$[0].bikes[0].bikeName''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 20,
+                                              ),
+                                        );
+                                      },
                                     ),
-                                    borderRadius: BorderRadius.circular(30),
                                   ),
-                                ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        30, 20, 30, 0),
+                                    child: FutureBuilder<ApiCallResponse>(
+                                      future: GetDetileBikeCall.call(),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final textGetDetileBikeResponse =
+                                            snapshot.data!;
+                                        return Text(
+                                          getJsonField(
+                                            textGetDetileBikeResponse.jsonBody,
+                                            r'''$[0].bikes[0].desc''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFFA3A3A3),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 30, 0, 0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        context.pushNamed('BookingFrom');
+                                      },
+                                      text: 'BOOK NOW',
+                                      options: FFButtonOptions(
+                                        width: 153,
+                                        height: 41,
+                                        color: Color(0xFFFFB977),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Ubuntu',
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(37, 0, 37, 0),
-                          child: Container(
-                            width: 286,
-                            height: 475,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 19,
-                                  color: Color(0x33000000),
-                                  offset: Offset(0, 13),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(22),
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 50, 0, 0),
-                                  child: Text(
-                                    'Free',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF62D33A),
-                                          fontSize: 40,
-                                        ),
-                                  ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(37, 0, 37, 0),
+                              child: Container(
+                                width: 286,
+                                height: 475,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 19,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0, 13),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(22),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
-                                  child: Text(
-                                    'Tiger Street Pro Cycles',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 20,
-                                        ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      30, 20, 30, 0),
-                                  child: Text(
-                                    'Handlebar with bar, aggressive style\nAdjust your posture, change your posture, rest your hands, spin comfortably.\n\nLight aluminium, comes with foam, soft and comfortable to wear\nSize 25.4 : Width 560 mm.\nSize 31.8 : Width 560 mm.',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFFA3A3A3),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 30, 0, 0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      context.pushNamed('BookingFrom2');
-                                    },
-                                    text: 'BOOK NOW',
-                                    options: FFButtonOptions(
-                                      width: 153,
-                                      height: 41,
-                                      color: Color(0xFFFFB977),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Ubuntu',
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 100, 0, 0),
+                                      child: FutureBuilder<ApiCallResponse>(
+                                        future: GetDetileBikeCall.call(),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          final textGetDetileBikeResponse =
+                                              snapshot.data!;
+                                          return Text(
+                                            getJsonField(
+                                              textGetDetileBikeResponse
+                                                  .jsonBody,
+                                              r'''$[0].bikes[1].bikeName''',
+                                            ).toString(),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 20,
+                                                ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          30, 20, 30, 0),
+                                      child: FutureBuilder<ApiCallResponse>(
+                                        future: GetDetileBikeCall.call(),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          final textGetDetileBikeResponse =
+                                              snapshot.data!;
+                                          return Text(
+                                            getJsonField(
+                                              textGetDetileBikeResponse
+                                                  .jsonBody,
+                                              r'''$[0].bikes[1].desc''',
+                                            ).toString(),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: Color(0xFFA3A3A3),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 30, 0, 0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          context.pushNamed('BookingFrom');
+                                        },
+                                        text: 'BOOK NOW',
+                                        options: FFButtonOptions(
+                                          width: 153,
+                                          height: 41,
+                                          color: Color(0xFFFFB977),
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Ubuntu',
+                                                    color: Colors.white,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
                                           ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 286,
-                          height: 475,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 19,
-                                color: Color(0x33000000),
-                                offset: Offset(0, 13),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(22),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                                child: Text(
-                                  'Gone',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFFDB0D0D),
-                                        fontSize: 40,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Text(
-                                  'Tiger Street Pro Cycles',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 20,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    30, 20, 30, 0),
-                                child: Text(
-                                  'Handlebar with bar, aggressive style\nAdjust your posture, change your posture, rest your hands, spin comfortably.\n\nLight aluminium, comes with foam, soft and comfortable to wear\nSize 25.4 : Width 560 mm.\nSize 31.8 : Width 560 mm.',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFFA3A3A3),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    context.pushNamed('BookingFrom3');
-                                  },
-                                  text: 'BOOK NOW',
-                                  options: FFButtonOptions(
-                                    width: 153,
-                                    height: 41,
-                                    color: Color(0xFFFFB977),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Ubuntu',
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.normal,
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            Container(
+                              width: 286,
+                              height: 475,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 19,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0, 13),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(22),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 100, 0, 0),
+                                    child: FutureBuilder<ApiCallResponse>(
+                                      future: GetDetileBikeCall.call(),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final textGetDetileBikeResponse =
+                                            snapshot.data!;
+                                        return Text(
+                                          getJsonField(
+                                            textGetDetileBikeResponse.jsonBody,
+                                            r'''$[0].bikes[2].bikeName''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 20,
+                                              ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        30, 20, 30, 0),
+                                    child: FutureBuilder<ApiCallResponse>(
+                                      future: GetDetileBikeCall.call(),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final textGetDetileBikeResponse =
+                                            snapshot.data!;
+                                        return Text(
+                                          getJsonField(
+                                            textGetDetileBikeResponse.jsonBody,
+                                            r'''$[0].bikes[2].desc''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFFA3A3A3),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 30, 0, 0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        context.pushNamed('BookingFrom');
+                                      },
+                                      text: 'BOOK NOW',
+                                      options: FFButtonOptions(
+                                        width: 153,
+                                        height: 41,
+                                        color: Color(0xFFFFB977),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Ubuntu',
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

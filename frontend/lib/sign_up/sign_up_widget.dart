@@ -12,24 +12,24 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? textController3;
+  TextEditingController? passwordfiController;
+
+  late bool passwordfiVisibility;
+  TextEditingController? usernameController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-    textController3 = TextEditingController();
+    passwordfiController = TextEditingController();
+    passwordfiVisibility = false;
+    usernameController = TextEditingController();
   }
 
   @override
   void dispose() {
-    textController1?.dispose();
-    textController2?.dispose();
-    textController3?.dispose();
+    passwordfiController?.dispose();
+    usernameController?.dispose();
     super.dispose();
   }
 
@@ -195,7 +195,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                           child: TextFormField(
-                            controller: textController1,
+                            controller: usernameController,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -239,59 +239,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 12, 0),
-                          child: TextFormField(
-                            controller: textController2,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              hintText: 'Email',
-                              hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(17),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(17),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(17),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(17),
-                              ),
-                            ),
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                        ),
-                        Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(0, 20, 12, 20),
                           child: TextFormField(
-                            controller: textController3,
-                            autofocus: true,
-                            obscureText: false,
+                            controller: passwordfiController,
+                            obscureText: !passwordfiVisibility,
                             decoration: InputDecoration(
                               hintText: 'Password',
                               hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -322,6 +274,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   width: 1,
                                 ),
                                 borderRadius: BorderRadius.circular(17),
+                              ),
+                              suffixIcon: InkWell(
+                                onTap: () => setState(
+                                  () => passwordfiVisibility =
+                                      !passwordfiVisibility,
+                                ),
+                                focusNode: FocusNode(skipTraversal: true),
+                                child: Icon(
+                                  passwordfiVisibility
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
+                                  color: Color(0xFF757575),
+                                  size: 22,
+                                ),
                               ),
                             ),
                             style:
